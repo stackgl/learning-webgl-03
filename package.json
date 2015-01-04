@@ -1,8 +1,8 @@
 {
-  "name": "learning-webgl-02",
+  "name": "learning-webgl-03",
   "version": "1.0.0",
   "private": true,
-  "description": "Learning WebGL Lesson 2 converted from vanilla WebGL to use stack.gl",
+  "description": "Learning WebGL Lesson 3 converted from vanilla WebGL to use stack.gl",
   "scripts": {
     "start": "wzrd index.js:bundle.min.js",
     "prepublish": "browserify index.js | uglifyjs -cm > bundle.min.js"
