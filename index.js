@@ -74,11 +74,11 @@ function render() {
   // Calculate projection matrix
   mat4.perspective(projectionMatrix, Math.PI / 4, width / height, 0.1, 100)
   // Calculate triangle's modelView matrix
-  mat4.identity(triangleMatrix, triangleMatrix)
+  mat4.identity(triangleMatrix)
   mat4.translate(triangleMatrix, triangleMatrix, [-1.5, 0, -7])
   mat4.rotate(triangleMatrix, triangleMatrix, rTri, [0, 1, 0])
   // Calculate squares's modelView matrix
-  mat4.identity(squareMatrix, squareMatrix)
+  mat4.identity(squareMatrix)
   mat4.translate(squareMatrix, squareMatrix, [1.5, 0, -7])
   mat4.rotate(squareMatrix, squareMatrix, rSquare, [1, 0, 0])
 
