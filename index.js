@@ -11,6 +11,9 @@ var shader = glslify({
   vert: './shader.vert'
 })(gl)
 
+shader.attributes.aPosition.location = 0
+shader.attributes.aColor.location = 1
+
 var triangleMatrix   = mat4.create()
 var squareMatrix     = mat4.create()
 var projectionMatrix = mat4.create()
@@ -71,9 +74,6 @@ function render() {
   clear(gl)
   gl.viewport(0, 0, width, height)
 
-  gl.enableVertexAttribArray(0)
-  gl.enableVertexAttribArray(1)
-
   // Calculate projection matrix
   mat4.perspective(projectionMatrix, Math.PI / 4, width / height, 0.1, 100)
   // Calculate triangle's modelView matrix
@@ -92,17 +92,17 @@ function render() {
   // Draw the triangle
   shader.uniforms.uModelView = triangleMatrix
   triangle.vertices.bind()
-  gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0)
+  shader.attributes.aPosition.pointer()
   triangle.colors.bind()
-  gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 0, 0)
+  shader.attributes.aColor.pointer()
   gl.drawArrays(gl.TRIANGLES, 0, triangle.length)
 
   // Draw the square
   shader.uniforms.uModelView = squareMatrix
   square.vertices.bind()
-  gl.vertexAttribPointer(0, 3, gl.FLOAT, false, 0, 0)
+  shader.attributes.aPosition.pointer()
   square.colors.bind()
-  gl.vertexAttribPointer(1, 3, gl.FLOAT, false, 0, 0)
+  shader.attributes.aColor.pointer()
   gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4)
 }
 
